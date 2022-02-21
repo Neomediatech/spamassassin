@@ -25,6 +25,14 @@ su $USERNAME bash -c "
   chmod g-rx,o-rx .pyzor .pyzor/servers
   sed -i 's|^\(logfile\) .*|\1 = /dev/stdout|' .razor/razor-agent.conf"
 
+if [ ! -f /etc/spamassassin/local.cf ]; then
+  cat <<EOF > /etc/spamassassin/local.cf
+clear_report_template
+report (_SCORE_ points of _REQD_ required)
+report _REPORT_
+EOF
+fi
+
 spamd --allowed-ips=0.0.0.0/0 --helper-home-dir=/var/lib/spamassassin \
   --ip-address --pidfile=/var/run/spamd.pid --syslog=stderr \
   --username=$USERNAME $EXTRA_OPTIONS
