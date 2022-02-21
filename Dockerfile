@@ -25,7 +25,7 @@ RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         ca-certificates libmail-dkim-perl libnet-ident-perl pyzor razor gpg gpg-agent \
-        procps spamassassin && \
+        procps spamassassin libmail-spf-perl && \
     usermod --uid $SPAMD_UID $USERNAME && \
     chsh -s /bin/sh $USERNAME && \
     mv /etc/mail/spamassassin/local.cf /etc/mail/spamassassin/local.cf-dist && \
