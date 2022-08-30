@@ -25,7 +25,12 @@ su $USERNAME bash -c "
   chmod g-rx,o-rx .pyzor .pyzor/servers
   sed -i 's|^\(logfile\) .*|\1 = /dev/stdout|' .razor/razor-agent.conf"
 
-if [ ! -f /etc/spamassassin/local.cf ]; then
+if [ -e /data/conf/local.cf ]; then
+  rm -f /etc/spamassassin/local.cf
+  ln -s /data/conf/local.cf /etc/spamassassin/local.cf
+fi
+
+if [ ! -e /etc/spamassassin/local.cf ]; then
   cat <<EOF > /etc/spamassassin/local.cf
 clear_report_template
 report (_SCORE_ points of _REQD_ required)
