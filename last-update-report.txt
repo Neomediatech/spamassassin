@@ -1,0 +1,1 @@
+ven 25 lug 2025, 11:32:20, CEST --- ghcr.io/neomediatech/spamassassin:latest UPDATED (image build needed: true)
