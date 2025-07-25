@@ -1,0 +1,1 @@
+ven 25 lug 2025, 11:31:33, CEST --- ghcr.io/neomediatech/spamassassin:latest UPDATED
