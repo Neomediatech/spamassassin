@@ -1,12 +1,10 @@
-FROM neomediatech/dcc AS builder
+FROM ghcr.io/neomediatech/dcc AS builder
 
-FROM neomediatech/ubuntu-base:20.04
+FROM ghcr.io/neomediatech/ubuntu-base:24.04
 
-ENV VERSION=3.4 \
-    SERVICE=spamassassin
+ENV SERVICE=spamassassin
 
 LABEL maintainer="docker-dario@neomediatech.it" \ 
-      org.label-schema.version=$VERSION \
       org.label-schema.vcs-type=Git \
       org.label-schema.vcs-url=https://github.com/Neomediatech/${SERVICE} \
       org.label-schema.maintainer=Neomediatech
@@ -18,20 +16,20 @@ ENV CRON_HOUR=1 CRON_MINUTE=30 \
     USER_UID=1000 \
     USER_GID=1000
 
-ARG SPAMD_VERSION=3.4.6-1
 ARG SPAMD_UID=2022
 
 RUN set -ex; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
         ca-certificates libmail-dkim-perl libnet-ident-perl pyzor razor gpg gpg-agent \
-        procps spamassassin libmail-spf-perl && \
+        procps spamassassin spamd libmail-spf-perl && \
     usermod --uid $SPAMD_UID $USERNAME && \
     chsh -s /bin/sh $USERNAME && \
     mv /etc/mail/spamassassin/local.cf /etc/mail/spamassassin/local.cf-dist && \
     sed -i 's/^logfile = .*$/logfile = \/dev\/stderr/g' \
      /etc/razor/razor-agent.conf && \
     sed -i '/^#\s*loadplugin .\+::DCC/s/^#\s*//g' /etc/spamassassin/v310.pre && \
+    userdel -f -r ubuntu 1>/dev/null && \
     groupadd -g "$USER_GID" user && \
     useradd -d /home/user -m -g user -u "$USER_UID" user && \
     apt-get clean && rm -rf /var/lib/apt/lists* /tmp/* /var/log/*
