@@ -1,0 +1,1 @@
+lun 9 feb 2026, 13:34:39, CET --- ghcr.io/neomediatech/spamassassin:latest done (image build needed: true)

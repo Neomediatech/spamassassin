@@ -1,0 +1,35 @@
+lun 9 feb 2026, 13:34:57, CET --- ghcr.io/neomediatech/spamassassin:latest
+
+Report Summary
+
+┌─────────────────────────────────────────────────────────┬────────┬─────────────────┬─────────┬───────────────────┐
+│                         Target                          │  Type  │ Vulnerabilities │ Secrets │ Misconfigurations │
+├─────────────────────────────────────────────────────────┼────────┼─────────────────┼─────────┼───────────────────┤
+│ ghcr.io/neomediatech/spamassassin:latest (ubuntu 24.04) │ ubuntu │        1        │    -    │         -         │
+└─────────────────────────────────────────────────────────┴────────┴─────────────────┴─────────┴───────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+For OSS Maintainers: VEX Notice
+--------------------------------
+If you're an OSS maintainer and Trivy has detected vulnerabilities in your project that you believe are not actually exploitable, consider issuing a VEX (Vulnerability Exploitability eXchange) statement.
+VEX allows you to communicate the actual status of vulnerabilities in your project, improving security transparency and reducing false positives for your users.
+Learn more and start using VEX: https://trivy.dev/docs/v0.69/guide/supply-chain/vex/repo#publishing-vex-documents
+
+To disable this notice, set the TRIVY_DISABLE_VEX_NOTICE environment variable.
+
+
+ghcr.io/neomediatech/spamassassin:latest (ubuntu 24.04)
+=======================================================
+Total: 1 (HIGH: 1, CRITICAL: 0)
+
+┌────────────────┬────────────────┬──────────┬────────┬───────────────────┬──────────────────┬────────────────────────────────────────────────────┐
+│    Library     │ Vulnerability  │ Severity │ Status │ Installed Version │  Fixed Version   │                       Title                        │
+├────────────────┼────────────────┼──────────┼────────┼───────────────────┼──────────────────┼────────────────────────────────────────────────────┤
+│ inetutils-ping │ CVE-2026-24061 │ HIGH     │ fixed  │ 2:2.5-3ubuntu4    │ 2:2.5-3ubuntu4.1 │ telnetd in GNU Inetutils through 2.7 allows remote │
+│                │                │          │        │                   │                  │ authentication bypa ...                            │
+│                │                │          │        │                   │                  │ https://avd.aquasec.com/nvd/cve-2026-24061         │
+└────────────────┴────────────────┴──────────┴────────┴───────────────────┴──────────────────┴────────────────────────────────────────────────────┘
+-------------------------------------------------------
